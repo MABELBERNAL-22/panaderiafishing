@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panadería Hojaldrita - Promoción Especial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(to bottom, #fef3e2, #fde8c8);
+            min-height: 100vh;
+            color: #2c1810;
+        }
+
+        .warning-banner {
+            background-color: #dc2626;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .promo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #f97316;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #7c2d12;
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: #92400e;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 32px;
+            border: 2px solid #fed7aa;
+        }
+
+        .card-header {
+            background: linear-gradient(to right, #fed7aa, #fde8c8);
+            padding: 32px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid white;
+            margin: 0 auto 24px;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-title {
+            font-size: 2rem;
+            color: #7c2d12;
+            margin-bottom: 8px;
+        }
+
+        .card-description {
+            font-size: 1.125rem;
+            color: #92400e;
+        }
+
+        .card-content {
+            padding: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c1810;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #fed7aa;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #f97316;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background-color: #f97316;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 24px;
+        }
+
+        .submit-btn:hover {
+            background-color: #ea580c;
+        }
+
+        .terms {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #92400e;
+            margin-top: 16px;
+        }
+
+        /* Nuevo estilo para mensaje de datos robados más impactante */
+        .stolen-message {
+            text-align: center;
+            padding: 48px 32px;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .stolen-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .stolen-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .stolen-description {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .continue-btn {
+            background-color: white;
+            color: #dc2626;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .continue-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 48px 32px;
+        }
+
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px;
+            color: #16a34a;
+        }
+
+        .alert {
+            background-color: #fee2e2;
+            border: 2px solid #dc2626;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .alert-title {
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: #dc2626;
+            margin-bottom: 8px;
+        }
+
+        .alert-description {
+            color: #991b1b;
+            line-height: 1.6;
+        }
+
+        .captured-data {
+            background-color: #f3f4f6;
+            border: 2px solid #dc2626;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .data-item {
+            background-color: #e5e7eb;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 8px;
+        }
+
+        .tips-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .tip {
+            margin-bottom: 20px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .tip-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #fed7aa;
+            color: #7c2d12;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .tip h4 {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c1810;
+        }
+
+        .tip p {
+            color: #6b7280;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .footer-card {
+            background-color: #fef3e2;
+            border: 2px solid #fed7aa;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cambio de banner a mensaje más realista sin mencionar demostración educativa -->
+    <div class="warning-banner">
+        ⚠️ Redimible hasta el 31 de octubre de 2025 ⚠️
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="promo-badge">
+                🎁 ¡Promoción Especial!
+            </div>
+            <h1>Panadería Hojaldrita</h1>
+            <p class="subtitle">¡Celebramos nuestro aniversario contigo!</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <!-- Incrustando el logo real de la Panadería Hojaldrita usando la URL del blob -->
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logopanaderia.png-hWg8DrJYTxmkOBaptsxnhNuaGT58vW.png" alt="Hojaldrita Logo" class="logo">
+                <h2 class="card-title">¡Gana un Bono de $50.000!</h2>
+                <p class="card-description">Reclama tu bono especial por nuestro 10° aniversario</p>
+            </div>
+            <div class="card-content">
+                <form id="promoForm">
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo *</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico *</label>
+                        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfono / WhatsApp *</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="300 123 4567" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cedula">Cédula de Ciudadanía *</label>
+                        <input type="text" id="cedula" name="cedula" placeholder="1234567890" required>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        🎁 Reclamar Mi Bono Ahora
+                    </button>
+
+                    <p class="terms">* Al reclamar aceptas nuestros términos y condiciones</p>
+                </form>
+
+                <!-- Nuevo mensaje impactante de datos robados -->
+                <div id="stolenMessage" class="stolen-message hidden">
+                    <div class="stolen-icon">🚨</div>
+                    <h3 class="stolen-title">¡TUS DATOS HAN SIDO ROBADOS!</h3>
+                    <p class="stolen-description">
+                        En un ataque real de phishing, acabas de entregar tu información personal a criminales.
+                        <br><br>
+                        <strong>Esto es una simulación educativa.</strong> Tus datos NO fueron enviados a nadie, pero así de fácil es caer en una trampa.
+                    </p>
+                    <button class="continue-btn" onclick="showEducationalContent()">
+                        Ver Qué Datos Capturaron
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="educationalSection" class="hidden">
+            <div class="alert">
+                <div class="alert-title">⚠️ ATENCIÓN: Esto es una Demostración Educativa</div>
+                <div class="alert-description">
+                    Esta página simula un ataque de <strong>phishing</strong> con fines educativos. En un escenario real, los datos ingresados serían enviados a atacantes maliciosos.
+                </div>
+            </div>
+
+            <div id="capturedDataSection" class="captured-data">
+                <h3 style="color: #dc2626; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                    🛡️ Datos Capturados (Simulación)
+                </h3>
+                <p style="color: #6b7280; margin-bottom: 16px; font-size: 0.875rem;">
+                    Así es como un atacante obtendría tu información personal:
+                </p>
+                <div id="capturedDataContent"></div>
+                <p style="color: #6b7280; margin-top: 16px; font-size: 0.875rem;">
+                    💡 Con esta información, un atacante podría: robar tu identidad, acceder a tus cuentas, realizar fraudes financieros, o vender tus datos en la dark web.
+                </p>
+            </div>
+
+            <div class="tips-section">
+                <h3 style="margin-bottom: 24px; color: #2c1810;">🎓 ¿Cómo Puedes Protegerte del Phishing?</h3>
+
+                <div class="tip">
+                    <div class="tip-number">1</div>
+                    <h4>Verifica la URL</h4>
+                    <p>Las páginas legítimas usan HTTPS y dominios oficiales. Desconfía de URLs extrañas o acortadas.</p>
+                </div>
+
+                <div class="tip">
+                    <div class="tip-number">2</div>
+                    <h4>Ofertas Demasiado Buenas</h4>
+                    <p>Si algo parece demasiado bueno para ser verdad, probablemente lo sea. Los bonos "gratis" son señales de alerta.</p>
+                </div>
+
+                <div class="tip">
+                    <div class="tip-number">3</div>
+                    <h4>No Compartas Datos Sensibles</h4>
+                    <p>Nunca ingreses tu cédula, contraseñas o datos bancarios en sitios no verificados.</p>
+                </div>
+
+                <div class="tip">
+                    <div class="tip-number">4</div>
+                    <h4>Verifica el Remitente</h4>
+                    <p>Contacta directamente a la empresa por canales oficiales antes de ingresar información.</p>
+                </div>
+
+                <div class="tip">
+                    <div class="tip-number">5</div>
+                    <h4>Urgencia Sospechosa</h4>
+                    <p>Los atacantes crean urgencia ("¡Solo hoy!", "¡Últimas horas!") para que actúes sin pensar.</p>
+                </div>
+            </div>
+
+            <div class="footer-card">
+                <p style="font-weight: 600; margin-bottom: 8px;">Proyecto Educativo de Semillero de Ciberseguridad</p>
+                <p style="color: #92400e; font-size: 0.875rem;">
+                    Esta demostración tiene fines exclusivamente educativos. Ningún dato es almacenado ni compartido.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('promoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Capturar datos del formulario
+            const formData = {
+                nombre: document.getElementById('nombre').value,
+                email: document.getElementById('email').value,
+                telefono: document.getElementById('telefono').value,
+                cedula: document.getElementById('cedula').value
+            };
+
+            // Guardar datos para mostrar después
+            window.capturedData = formData;
+
+            // Ocultar formulario y mostrar mensaje de datos robados
+            document.getElementById('promoForm').classList.add('hidden');
+            document.getElementById('stolenMessage').classList.remove('hidden');
+
+            // Scroll al mensaje de datos robados
+            setTimeout(() => {
+                document.getElementById('stolenMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+        });
+
+        function showEducationalContent() {
+            // Ocultar mensaje de datos robados
+            document.getElementById('stolenMessage').classList.add('hidden');
+            
+            // Mostrar sección educativa
+            document.getElementById('educationalSection').classList.remove('hidden');
+            
+            // Mostrar datos capturados
+            const capturedDataContent = document.getElementById('capturedDataContent');
+            capturedDataContent.innerHTML = `
+                <div class="data-item"><strong>Nombre:</strong> ${window.capturedData.nombre}</div>
+                <div class="data-item"><strong>Email:</strong> ${window.capturedData.email}</div>
+                <div class="data-item"><strong>Teléfono:</strong> ${window.capturedData.telefono}</div>
+                <div class="data-item"><strong>Cédula:</strong> ${window.capturedData.cedula}</div>
+            `;
+
+            // Scroll suave a la sección educativa
+            setTimeout(() => {
+                document.getElementById('educationalSection').scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+    </script>
+</body>
+</html>
